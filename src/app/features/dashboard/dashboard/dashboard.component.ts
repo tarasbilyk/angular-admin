@@ -1,7 +1,9 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ITransaction } from 'src/app/shared/interfaces/transaction.interface';
+import { DatePipe } from '@angular/common';
 import { IUser } from 'src/app/shared/interfaces/user.interface';
+import { ITransaction } from 'src/app/shared/interfaces/transaction.interface';
+import {ChartConfiguration, ChartType} from "chart.js";
+import { viewsDataMock } from 'src/testing/mocks/viewsDataMock';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +27,8 @@ export class DashboardComponent implements OnInit {
   isEveryMoreThanFive!: boolean;
   hasLessThanFour!: boolean;
 
+  disableRecolor!: boolean;  
+
   constructor(private datePipe: DatePipe) { }
 
   ngOnInit(): void {
@@ -40,6 +44,53 @@ export class DashboardComponent implements OnInit {
     console.log(this.vegetables);
     this.vegetables = this.vegetables.map(el => el.replace('To', ' ').trim());
   }
+
+  public lineChartData: any = {
+    datasets: [
+      {
+        data: viewsDataMock,
+        label: 'Views per year',
+        backgroundColor: 'rgba(148,159,177,0.2)',
+        borderColor: 'rgba(148,159,177,1)',
+        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+        fill: 'origin',
+      },
+    ],
+    labels: [ 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  };
+
+  public lineChartOptions: ChartConfiguration['options'] = {
+    elements: {
+      line: {
+        tension: 0.5,
+      },
+    },
+    scales: {
+      // We use this empty structure as a placeholder for dynamic theming.
+      x: {},
+      'y-axis-0':
+        {
+          position: 'left',
+        },
+      'y-axis-1': {
+        position: 'right',
+        grid: {
+          color: 'rgba(255,0,0,0.3)',
+        },
+        ticks: {
+          color: 'red'
+        }
+      }
+    },
+    plugins: {
+      legend: { display: true },
+    }
+  };
+
+  public lineChartType: ChartType = 'line';
 
   private formatDate = (date: Date) => {
     this.currentDate = `Date: ${this.datePipe.transform(date, 'MM.dd.yyyy hh:mm a')}`;
