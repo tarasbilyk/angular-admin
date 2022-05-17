@@ -4,6 +4,7 @@ import { IUser } from 'src/app/shared/interfaces/user.interface';
 import { ITransaction } from 'src/app/shared/interfaces/transaction.interface';
 import {ChartConfiguration, ChartType} from "chart.js";
 import { viewsDataMock } from 'src/testing/mocks/viewsDataMock';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,8 +29,11 @@ export class DashboardComponent implements OnInit {
   hasLessThanFour!: boolean;
 
   disableRecolor!: boolean;  
+  showMessage: boolean = false;
 
-  constructor(private datePipe: DatePipe) { }
+  constructor(
+    private datePipe: DatePipe,
+    private usersService: UsersService) { }
 
   ngOnInit(): void {
     this.getDate(this.formatDate);
@@ -41,8 +45,19 @@ export class DashboardComponent implements OnInit {
     this.isEveryMoreThanFive = this.vegetables.every(x => x.length > 5);
     this.hasLessThanFour = this.vegetables.some(x => x.length < 4);
     this.vegetables.forEach((_, index) => this.vegetables[index] += '1');
-    console.log(this.vegetables);
     this.vegetables = this.vegetables.map(el => el.replace('To', ' ').trim());
+
+    this.usersService.currentUser
+      .subscribe((user: IUser) => {
+        if (user?.name) {
+          this.showMessage = true;
+          this.currentUser = user;
+
+          setTimeout(() => {
+            this.showMessage = false;
+          }, 3000);
+        }
+      });
   }
 
   public lineChartData: any = {
@@ -105,7 +120,8 @@ export class DashboardComponent implements OnInit {
     this.currentUser = {
       id: 0,
       name: 'user1',
-      updateAt: date,
+      email: 'user1@gmail.com',
+      updatedAt: date,
       transactions: [...this.transactions],
       active: active
     }

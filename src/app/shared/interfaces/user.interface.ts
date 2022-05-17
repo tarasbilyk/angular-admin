@@ -3,7 +3,8 @@ import { ITransaction } from "./transaction.interface";
 export interface IUser{
     id: number;
     name: string;
-    updateAt: Date;
+    email: string;
+    updatedAt: Date;
     transactions: ITransaction[];
     active: boolean;
 }
