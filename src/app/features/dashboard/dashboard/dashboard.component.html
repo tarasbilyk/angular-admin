@@ -1,1 +1,11 @@
-<p>dashboard works!</p>
+<p>{{currentDate}}</p>  
+<p>Vegetables: <ng-container *ngFor="let fruit of vegetables">{{fruit}} </ng-container></p>
+<p>VegetablesRefCopy: <ng-container *ngFor="let fruit of vegetablesRefCopy">{{fruit}} </ng-container></p>
+<p>VegetablesValCopy: <ng-container *ngFor="let fruit of vegetablesValCopy">{{fruit}} </ng-container></p>
+<p>Include 'a': 
+    <ng-container *ngFor="let word of includesA">
+        <span [ngClass]="{red: !word}">{{word}}, </span>
+    </ng-container></p>
+<p>Every word has length more than 5: <span [ngClass]="{red: !isEveryMoreThanFive}">{{isEveryMoreThanFive}}</span></p>
+<p>Any word less than four: <span [ngClass]="{red: !hasLessThanFour}">{{hasLessThanFour}}</span></p>
+<p></p>

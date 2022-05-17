@@ -4,6 +4,10 @@ import { DashboardComponent } from './features/dashboard/dashboard/dashboard.com
 
 const routes: Routes = [
   {
+    path: '',
+    component: DashboardComponent
+  },
+  {
     path: 'dashboard',
     component: DashboardComponent
   },
