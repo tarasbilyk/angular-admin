@@ -1,0 +1,1 @@
+export const viewsDataMock: number[] = [22, 23, 25, 26, 90, 10, 12, 44, 56, 12, 44, 56];
