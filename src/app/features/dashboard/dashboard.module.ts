@@ -8,7 +8,14 @@ import { VisitorsChartComponent } from './dashboard/components/visitors-chart/vi
 import { CurrentSettingsComponent } from './dashboard/components/current-settings/current-settings.component';
 import { RecentlyAddedUsersComponent } from './dashboard/components/recently-added-users/recently-added-users.component';
 import { LastTransactionsComponent } from './dashboard/components/last-transactions/last-transactions.component';
+import { RouterModule, Routes } from '@angular/router';
  
+const routes: Routes = [
+  {
+    path: '',
+    component: DashboardComponent,
+  },
+];
 
 @NgModule({
   declarations: [
@@ -22,6 +29,7 @@ import { LastTransactionsComponent } from './dashboard/components/last-transacti
     BrowserModule,
     DashboardComponent,
     DashboardService,
+    RouterModule.forChild(routes),
   ]
 })
 export class DashboardModule { }
