@@ -1,0 +1,18 @@
+nav{
+    background-color: gray;
+
+    .nav-items{
+        display: flex;
+        align-content:flex-start;
+    }
+    .nav-item{
+        padding: 10px;
+        
+        &:hover{
+            color: white;
+        }
+    }
+    .active{
+        color: white;
+    }
+}
