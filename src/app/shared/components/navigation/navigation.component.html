@@ -1,11 +1,14 @@
 <nav>
     <div class="nav-items">
-        <div class="nav-item" 
-             *ngFor="let link of links" 
-             [routerLinkActiveOptions]="{exact: true}" 
-             routerLink="{{link}}" 
-             routerLinkActive="active">
-             {{link}}
-        </div>
+        <ng-container *ngFor="let link of links">
+            <div class="nav-item" 
+            *ngIf="displayLink(link)"
+            [routerLinkActiveOptions]="{exact: true}" 
+            routerLink="{{link}}" 
+            routerLinkActive="active">
+            {{link}}
+       </div>
+        </ng-container>
+        
     </div>
 </nav>

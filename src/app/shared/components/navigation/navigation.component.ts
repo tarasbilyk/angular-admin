@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { UserRolesEnum } from '../../enums/user-roles.enum';
 
 @Component({
   selector: 'app-navigation',
@@ -13,10 +15,17 @@ export class NavigationComponent implements OnInit {
     'settings'
   ]
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     
+  }
+
+  displayLink(link: string): boolean{
+    if(link != 'settings') return true;
+   return this.authService.getRole() == UserRolesEnum.SuperAdmin;
   }
 
 }

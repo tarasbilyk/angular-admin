@@ -15,6 +15,7 @@ import { CurrentSettingsComponent } from './features/dashboard/dashboard/compone
 import { LastTransactionsComponent } from './features/dashboard/dashboard/components/last-transactions/last-transactions.component';
 import { RecentlyAddedUsersComponent } from './features/dashboard/dashboard/components/recently-added-users/recently-added-users.component';
 import { VisitorsChartComponent } from './features/dashboard/dashboard/components/visitors-chart/visitors-chart.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { VisitorsChartComponent } from './features/dashboard/dashboard/component
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    NgChartsModule
+    NgChartsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

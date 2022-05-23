@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SuperAdminGuard } from './core/guards/super-admin.guard';
 import { DashboardComponent } from './features/dashboard/dashboard/dashboard.component';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'settings',
+    canActivate: [SuperAdminGuard],
     loadChildren: () => import('./features/settings/settings.module').then((m) => m.SettingsModule),
   }
 ];
